@@ -1,0 +1,23 @@
+{
+  "name": "arc-proxy-plugin-urls",
+  "version": "1.0.0",
+  "description": "adds /staging and /production to any mjs imports",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint index.js --fix",
+    "build": "ncc build index.js --minify -o dist",
+    "test": "tape test.js | tap-spec"
+  },
+  "keywords": [],
+  "author": "Brian LeRoux <b@brian.io>",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@zeit/ncc": "^0.14.0",
+    "escodegen": "^1.11.0",
+    "eslint": "^5.13.0",
+    "esprima": "^4.0.1",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.2"
+  }
+}
