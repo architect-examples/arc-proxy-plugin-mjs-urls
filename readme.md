@@ -1,1 +1,1 @@
-# arc-proxy-plugin-urls
+# @architect/proxy-plugin-mjs-urls
