@@ -24,6 +24,7 @@ test('returns {body, headers}', t=> {
 
 test('adds staging prefix when Key starts with "staging"', t=> {
   t.plan(1)
+  process.env.NODE_ENV = 'staging'
   let Key = 'staging/foo.mjs'
   let src = `
     import foo from '/bar'
@@ -40,6 +41,7 @@ test('adds staging prefix when Key starts with "staging"', t=> {
 
 test('adds production prefix when Key starts with "production"', t=> {
   t.plan(1)
+  process.env.NODE_ENV = 'production'
   let Key = 'production/foo.mjs'
   let src = `
     import foo from '/bar'

@@ -16,14 +16,11 @@ let escodegen = require('escodegen')
  * @returns File - the processed file contents {header, body}
  */
 module.exports = function mjs(Key, {headers, body}) {
-  let staging = 'staging'
-  let production = 'production'
-  let prefixing = Key.startsWith(staging) || Key.startsWith(production)
+  let prefixing = process.env.NODE_ENV != 'testing'
   if (prefixing) {
     let ast = esprima.parseModule(body, {}, function visit(node) {
       if (node.type === 'ImportDeclaration') {
-        let env = Key.startsWith(staging)? staging : production
-        let val = `/${env}${node.source.value}`
+        let val = `/${process.env.NODE_ENV}${node.source.value}`
         node.source.value = val
       }
       return node
