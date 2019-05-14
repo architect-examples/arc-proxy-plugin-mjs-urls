@@ -1,6 +1,6 @@
 {
   "name": "@architect/proxy-plugin-mjs-urls",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "adds /staging and /production to any mjs imports",
   "main": "dist/index.js",
   "scripts": {
