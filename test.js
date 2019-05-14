@@ -1,9 +1,18 @@
 let test = require('tape')
 let plugin = require('./index') // note package.json "main" points to dist
+let mock = require('./mock')
 
 test('env', t=> {
   t.plan(1)
   t.ok(plugin, 'exists')
+})
+
+test.only('isBase64Encoded', t=> {
+  t.plan(1)
+  let {Key, config, defaults} = mock
+  let result = plugin(Key, defaults)
+  t.ok(result, 'got result')
+  console.log(result)
 })
 
 test('returns {body, headers}', t=> {

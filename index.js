@@ -26,7 +26,11 @@ module.exports = function mjs(Key, {headers, body, isBase64Encoded}) {
       }
       return node
     })
-    return {headers, body: escodegen.generate(ast), isBase64Encoded:!!(isBase64Encoded)}
+    return {
+      headers,
+      body: escodegen.generate(ast).toString(isBase64Encoded? 'base64' : 'utf8'),
+      isBase64Encoded: !!(isBase64Encoded)
+    }
   }
   else {
     return {headers, body}
