@@ -7,7 +7,7 @@ test('env', t=> {
   t.ok(plugin, 'exists')
 })
 
-test.only('isBase64Encoded', t=> {
+test('isBase64Encoded', t=> {
   t.plan(1)
   let {Key, config, defaults} = mock
   let result = plugin(Key, defaults)

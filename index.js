@@ -15,7 +15,7 @@ let escodegen = require('escodegen')
  * @param File - the file contents {headers, body}
  * @returns File - the processed file contents {header, body}
  */
-module.exports = function mjs(Key, {headers, body, isBase64Encoded}) {
+module.exports = function mjs(Key, {headers, body, isBase64Encoded=false}) {
   let prefixing = process.env.NODE_ENV != 'testing'
   if (prefixing) {
     let raw = isBase64Encoded? Buffer.from(body, 'base64').toString() : body
@@ -26,13 +26,8 @@ module.exports = function mjs(Key, {headers, body, isBase64Encoded}) {
       }
       return node
     })
-    return {
-      headers,
-      body: escodegen.generate(ast).toString(isBase64Encoded? 'base64' : 'utf8'),
-      isBase64Encoded: !!(isBase64Encoded)
-    }
+    raw = escodegen.generate(ast)
+    body = isBase64Encoded? Buffer.from(raw).toString('base64') : raw
   }
-  else {
-    return {headers, body}
-  }
+  return {headers, body, isBase64Encoded}
 }
